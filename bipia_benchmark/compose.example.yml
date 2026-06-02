@@ -1,0 +1,22 @@
+services:
+  bipia-defense-runner:
+    build:
+      context: ..
+      dockerfile: bipia_benchmark/Dockerfile
+    container_name: bipia_evaluator
+    environment:
+      - OPENAI_BASE_URL=http://host.docker.internal:11434/v1
+      - OPENAI_API_KEY=sk-xxx
+      - TARGET_MODEL=gemma4:31b
+      - JUDGE_MODEL=gemma4:31b
+    tty: true
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    volumes:
+      - ./benchmark_defense.py:/app/bipia_benchmark/benchmark_defense.py
+      - ../defenses:/app/defenses
+      - ./experiment_results:/app/bipia_benchmark/experiment_results
+    ulimits:
+      nofile:
+        soft: 65536
+        hard: 65536
