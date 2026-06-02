@@ -1,5 +1,5 @@
-# attack_ai_now
-Sec &amp; Priv of ML course
+# SpotOn
+Spot On: Defending Against Indirect Prompt Injection With Dynamic Spotlighting
 
 ## Setup
 
